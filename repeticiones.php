@@ -6,7 +6,7 @@ include_once('util.php');
 	$nombre=$_POST['nombre'];
 	$query="SELECT COUNT(*) cuantos FROM usuarios WHERE email='".$email."' AND password='".$pass."'";
 
-	$mysql=connect('siisa-qro.com','siisaqr_daw','daw12345','siisaqr_daw');
+	$mysql=connect();
 	$res=showquery($query,$mysql);
 
 	if(isset($res) && $res!=""){

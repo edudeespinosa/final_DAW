@@ -1,6 +1,6 @@
 <?php
-	function connect($server,$user,$password,$db){
-		$mysql = mysqli_connect($server,$user,$password,$db);
+	function connect(){
+		$mysql = mysqli_connect('codingdiaries.com','root','C0d1ng4fUn','dawfinal');
 		return $mysql;
 	}
 

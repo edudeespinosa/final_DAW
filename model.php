@@ -3,7 +3,7 @@
 
 
 	include_once('util.php');
-	$mysql=connect('siisa-qro.com','siisaqr_daw','daw12345','siisaqr_daw');
+	$mysql=connect();
 	$cuenta=$_POST['cuenta'];
 	$password=$_POST['password'];
 	$query="SELECT nombre,email FROM usuarios WHERE email='".$cuenta."' AND password='".$password."'";

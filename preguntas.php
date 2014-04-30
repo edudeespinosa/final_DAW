@@ -133,7 +133,7 @@
             where (Preguntas like '".$n1.$n2."%' OR Preguntas like '__".$n3.$n4."%' OR Preguntas like '______".$n7.$n8."'
             	   OR Preguntas like '_".$n2.$n3."%' OR Preguntas like '___".$n4.$n5."%' OR Preguntas like '_____".$n6.$n7."%')";    
 
- $mysql=connect('localhost','root','','a3507237_daw');    
+ $mysql=connect();    
  $mysql->query("SET NAMES 'utf8'");
 
 	$res=showquery($query,$mysql);

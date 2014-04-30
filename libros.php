@@ -106,7 +106,7 @@
 <div class="container">
     <?php
         include("util.php");
-        $mysql=connect('localhost','root','','a3507237_daw');
+        $mysql=connect();
         $mysql->query("SET NAMES 'utf8'");
         if(isset($_SESSION['name'])){
             $query="select * from libros where libros.isbn NOT IN(SELECT e.isbn FROM escoge e where email='".$_SESSION['email']."')";

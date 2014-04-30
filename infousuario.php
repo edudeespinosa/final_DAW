@@ -1,7 +1,7 @@
 <?php
 
 include_once('util.php');
-	$mysql=connect('siisa-qro.com','siisaqr_daw','daw12345','siisaqr_daw');
+	$mysql=connect();
 	$mysql->query("SET NAMES 'utf8'");
 
 	$query="SELECT e.ISBN, titulo, autor, editorial, genero, descripcion 
