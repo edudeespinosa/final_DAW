@@ -6,7 +6,7 @@ $proxyhost = isset($_POST['proxyhost']) ? $_POST['proxyhost'] : '';
 $proxyport = isset($_POST['proxyport']) ? $_POST['proxyport'] : '';
 $proxyusername = isset($_POST['proxyusername']) ? $_POST['proxyusername'] : '';
 $proxypassword = isset($_POST['proxypassword']) ? $_POST['proxypassword'] : '';
-$client = new nusoap_client('http://localhost:8080/final.php?wsdl', 'wsdl',
+$client = new nusoap_client('http://edude.codingdiaries.com/final/webservice.php?wsdl', 'wsdl',
   $proxyhost, $proxyport, $proxyusername, $proxypassword);
 $err = $client->getError();
 if ($err) {
@@ -17,7 +17,7 @@ if ($err) {
 
 }
 
-$result = $client->call('hello', array('name' => 'Scott'));
+$result = $client->call('getUsuario', array('email' => 'a01062735@itesm.mx'));
 
 if ($client->fault) {
     echo '<h2>Fault</h2><pre>';

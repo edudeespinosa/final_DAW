@@ -1,6 +1,6 @@
 <?php
 	function connect(){
-		$mysql = mysqli_connect('localhost','root','','dawfinal');
+		$mysql = mysqli_connect('localhost','root','C0d1ng4fUn','dawfinal');
 		return $mysql;
 	}
 
