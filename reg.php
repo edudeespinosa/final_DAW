@@ -26,81 +26,81 @@
 </head> 
 
 <body> 
-  
-<!--=== Top ===-->    
-<div class="top">
-    <div class="container">   
-        <ul class="loginbar pull-right">
-               <?php 
-               if(!isset($_SESSION['name'])) { 
-                    echo '<li><a href="login.php">Iniciar sesión</a></li> 
-                    <li class="devider"></li>
-                    <li><a href="reg.php">Registrarse</a></li>';
-                }else{ 
-                    echo "<li> <a href='cuenta.php'>".$_SESSION['name'].'</a></li>
-                    <li class="devider"></li>
-                    <li><a href="logout.php">  Cerrar Sesión</a></li>'; 
-                }
-		include_once('util.php');
-                ?>
+
+    <!--=== Top ===-->    
+    <div class="top">
+        <div class="container">   
+            <ul class="loginbar pull-right">
+             <?php 
+             if(!isset($_SESSION['name'])) { 
+                echo '<li><a href="login.php">Iniciar sesión</a></li> 
+                <li class="devider"></li>
+                <li><a href="reg.php">Registrarse</a></li>';
+            }else{ 
+                echo "<li> <a href='cuenta.php'>".$_SESSION['name'].'</a></li>
+                <li class="devider"></li>
+                <li><a href="logout.php">  Cerrar Sesión</a></li>'; 
+            }
+            include_once('util.php');
+            ?>
         </ul>
     </div>      
 </div><!--/top-->
 <!--=== End Top ===-->   
-  
+
 <div class="header">
     <div class="navbar navbar-default" role="navigation">
         <div class="container">
 
-            
+
             <div class="navbar-header">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.php">
-                    <img id="logo-header" src="img/logo.png" alt="Logo">
-                </a>
-            </div>
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.php">
+                <img id="logo-header" src="img/logo.png" alt="Logo">
+            </a>
+        </div>
 
 
-            <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
+        <div class="collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
 
-                        <a href="index.php">
-                            INICIO
-                            <i class="icon-angle-down"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown">
+                    <a href="index.php">
+                        INICIO
+                        <i class="icon-angle-down"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
 
-                        <a href="reg.php">
-                            QUIZ
-                            <i class="icon-angle-down"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown">
+                    <a href="reg.php">
+                        QUIZ
+                        <i class="icon-angle-down"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
 
-                        <a href="libros.php">
+                    <a href="libros.php">
 
-                            VER LIBROS
-                            <i class="icon-angle-down"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown">
+                        VER LIBROS
+                        <i class="icon-angle-down"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
 
-                        <a href="about.php">
-                            ACERCA DE
-                            <i class="icon-angle-down"></i>
-                        </a>
-                    </li>
-                </ul>     
+                    <a href="about.php">
+                        ACERCA DE
+                        <i class="icon-angle-down"></i>
+                    </a>
+                </li>
+            </ul>     
 
-            </div>
-        </div>    
+        </div>
     </div>    
+</div>    
 
 
 </div>   
@@ -141,8 +141,8 @@
                 <h4>Contraseña</h4>         
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" placeholder="Contraseña" class="form-control" id="Contraseña" name="passwd">  value="<?php echo 'holi'?>"</input>
-		</div>
+                    <input type="password" placeholder="Contraseña" class="form-control" id="Contraseña" name="passwd" value="<?php echo 'holi'?>"></input>
+                </div>
                 
                 <h4>Confirmar contraseña</h4>         
                 <div class="input-group margin-bottom-20">
@@ -150,20 +150,20 @@
                     <input type="password" placeholder="Contraseña" class="form-control" id="Confirmación" name="passwd2">
                 </div>
                 
-               
+
 
                 <div class="row">
                     <div class="col-md-6">                     
                     </div>
                     <div class="col-md-6">
-			<button class="btn-u pull-right" type="submit" id="button" value="<?php if (!isset($_SESSION['name'])){echo 'registro';}else echo 'actualizar';  ?>">
-			<?php if(!isset($_SESSION['name'])) echo 'Registrarse'; else echo 'Actualizar';?>
-			</button>                        
-                    </div>
-                </div>
-            </form>            
-        </div>
-    </div>
+                     <button class="btn-u pull-right" type="submit" id="button" value="<?php if (!isset($_SESSION['name'])){echo 'registro';}else echo 'actualizar';  ?>">
+                         <?php if(!isset($_SESSION['name'])) echo 'Registrarse'; else echo 'Actualizar';?>
+                     </button>                        
+                 </div>
+             </div>
+         </form>            
+     </div>
+ </div>
 </div>
 
 <div class="footer">
@@ -184,62 +184,62 @@
 </div>
 
 <script type="text/javascript">
- $(document).ready(function () {
+   $(document).ready(function () {
 
-       $("#form").submit(function(event){
-             event.preventDefault();
-            var msg="";
+     $("#form").submit(function(event){
+       event.preventDefault();
+       var msg="";
 
-            $("#message").html(msg);
-            $("#message").css("display","none");
-            validation=true;
-            var elements=$(this).find(':input');
-            elements.each(function() {
-                if($(this).val()=="" && $(this).attr('id')!='button'){
-                    msg+="<p>El campo "+ $(this).attr("id")+" es requerido</p>";
-                    validation=false;
+       $("#message").html(msg);
+       $("#message").css("display","none");
+       validation=true;
+       var elements=$(this).find(':input');
+       elements.each(function() {
+        if($(this).val()=="" && $(this).attr('id')!='button'){
+            msg+="<p>El campo "+ $(this).attr("id")+" es requerido</p>";
+            validation=false;
+        }
+        if($(this).attr("name")=="passwd2" && $(this).val()!=$("#Contraseña").val()){
+            msg+="<p>La contraseña debe coincidir con la confirmación</p>";
+            validation=false;
+        }
+    });
+       if(validation){
+        name=$("#Correo").val();
+        pass=$("#Contraseña").val();
+        nombre=$("#Nombre").val();
+        $.ajax({
+            method:"POST",
+            url: "repeticiones.php",
+            data:{'username': name, 'passwd':pass,'nombre':nombre},
+            success:function(cosas){
+                if(cosas =="repetido"){
+                    msg="El correo ya se encuentra registrado";
+                }else if(cosas=="error al insertar"){
+                    msg="Ocurrió un error, intente más tarde";
+                }else if(cosas=="ok"){
+                    window.location.replace("success.php");
+                }else{
+                    msg="Error";
+                    console.log(cosas);
                 }
-                if($(this).attr("name")=="passwd2" && $(this).val()!=$("#Contraseña").val()){
-                    msg+="<p>La contraseña debe coincidir con la confirmación</p>";
-                    validation=false;
-                }
-            });
-            if(validation){
-                name=$("#Correo").val();
-                pass=$("#Contraseña").val();
-                nombre=$("#Nombre").val();
-                $.ajax({
-                    method:"POST",
-                    url: "repeticiones.php",
-                    data:{'username': name, 'passwd':pass,'nombre':nombre},
-                    success:function(cosas){
-                        if(cosas =="repetido"){
-                            msg="El correo ya se encuentra registrado";
-                        }else if(cosas=="error al insertar"){
-                            msg="Ocurrió un error, intente más tarde";
-                        }else if(cosas=="ok"){
-                            window.location.replace("success.php");
-                        }else{
-                            msg="Error";
-                            console.log(cosas);
-                        }
 
-                        $("#message").css("display","block");
-                        $("#message").html(msg);
-
-                    }
-
-                });
-                    
-            }
-            else{
-                $("#message").html(msg);
                 $("#message").css("display","block");
+                $("#message").html(msg);
+
             }
 
         });
 
-    });
+    }
+    else{
+        $("#message").html(msg);
+        $("#message").css("display","block");
+    }
+
+});
+
+});
 
 </script>
 
