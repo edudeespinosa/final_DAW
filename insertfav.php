@@ -2,22 +2,18 @@
 
  session_start();
 
+require_once('lib/nusoap.php');
 
+$proxyhost = isset($_POST['proxyhost']) ? $_POST['proxyhost'] : '';
+$proxyport = isset($_POST['proxyport']) ? $_POST['proxyport'] : '';
+$proxyusername = isset($_POST['proxyusername']) ? $_POST['proxyusername'] : '';
+$proxypassword = isset($_POST['proxypassword']) ? $_POST['proxypassword'] : '';
+$client = new nusoap_client('http://edude.codingdiaries.com/final/webservice.php?wsdl', 'wsdl',
+						$proxyhost, $proxyport, $proxyusername, $proxypassword);
+$err = $client->getError();
 
-include_once('util.php');
+$result = $client->call('insertFavorito', array('email' => $_SESSION['email'], 'isbn' => $_POST['isbn']));
 
-	$mysql=connect();
-
-	$mysql->query("SET NAMES 'utf8'");
-
-	$isbn=$_POST['isbn'];
-
-	$query="INSERT INTO escoge VALUES('".$_SESSION['email']."',".$isbn.")";
-
-
-
-	$res=runquery($query,$mysql);
-
-	echo $res;
+	echo $result;
 
 ?>

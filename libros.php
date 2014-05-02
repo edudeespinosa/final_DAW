@@ -105,32 +105,47 @@
 <!--=== Content Part ===-->
 <div class="container">
     <?php
-        include("util.php");
-        $mysql=connect();
-        $mysql->query("SET NAMES 'utf8'");
-        if(isset($_SESSION['name'])){
-            $query="select * from libros where libros.isbn NOT IN(SELECT e.isbn FROM escoge e where email='".$_SESSION['email']."')";
-        }else{
-            $query="select * from libros";
-        }
-        $res=showquery($query,$mysql);
+    //webservice
+    require_once('lib/nusoap.php');
 
-        if ($res != false) {
+    $proxyhost = isset($_POST['proxyhost']) ? $_POST['proxyhost'] : '';
+    $proxyport = isset($_POST['proxyport']) ? $_POST['proxyport'] : '';
+    $proxyusername = isset($_POST['proxyusername']) ? $_POST['proxyusername'] : '';
+    $proxypassword = isset($_POST['proxypassword']) ? $_POST['proxypassword'] : '';
+    $client = new nusoap_client('http://edude.codingdiaries.com/final/webservice.php?wsdl', 'wsdl',
+                            $proxyhost, $proxyport, $proxyusername, $proxypassword);
+    $err = $client->getError();
+
+        if(isset($_SESSION['name'])){
+            $res_isbn=$client->call('getLibros_ISBN', array('email' => $_SESSION['email']));
+            $res_titulo=$client->call('getLibros_titulo', array('email' => $_SESSION['email']));
+            $res_descripcion=$client->call('getLibros_descripcion', array('email' => $_SESSION['email']));
+        }else{
+            $res_isbn=$client->call('getLibros_ISBN', array('email' => 'no_email'));
+            $res_titulo=$client->call('getLibros_titulo', array('email' => 'no_email'));
+            $res_descripcion=$client->call('getLibros_descripcion', array('email' => 'no_email'));
+        }
+
+        if ($res_isbn != false) {
+            $res_isbn=explode(';',$res_isbn);
+            $res_titulo=explode(';',$res_titulo);
+            $res_descripcion=explode(';',$res_descripcion);
            $cont=1;
            $grid="";
-           foreach ($res as $key => $value) {
+           //foreach ($res as $key => $value) {
+           for($i=0;$i<count($res_isbn);$i++){
                if($cont==1){
                     $grid.='<div class="row service-v1 margin-bottom-40">';
                }
 
-                $grid.='<div class="col-md-3 md-margin-bottom-40" id="'.$value['ISBN'].'">
-                            <img src="img/'.$value['ISBN'].'.png" alt="'.$value['titulo'].'.png">
-                            <h2>'.$value['titulo'].'</h2>';
+                $grid.='<div class="col-md-3 md-margin-bottom-40" id="'.$res_isbn[$i].'">
+                            <img src="img/'.$res_isbn[$i].'.png" alt="'.$res_titulo[$i].'.png">
+                            <h2>'.$res_titulo[$i].'</h2>';
                 if(isset($_SESSION['name'])){
-                    $grid .= '<a href="javascript:void(0)" class="favorito" id="'.$value['ISBN'].'"><img src="img/fav_icon.png" style="width: 32px; height: 32px; margin-bottom: 10px" > </a>';
+                    $grid .= '<a href="javascript:void(0)" class="favorito" id="'.$res_isbn[$i].'"><img src="img/fav_icon.png" style="width: 32px; height: 32px; margin-bottom: 10px" > </a>';
                             
                 }
-                $grid.='<p class="desc">'.ucfirst(strtolower(addslashes($value['descripcion']))).'</p>
+                $grid.='<p class="desc">'.ucfirst(strtolower(addslashes($res_descripcion[$i]))).'</p>
                         </div>';
                         $cont++;
                 if($cont==5){

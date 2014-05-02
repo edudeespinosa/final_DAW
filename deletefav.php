@@ -1,12 +1,17 @@
 <?php
  session_start();
 
-include_once('util.php');
-	$mysql=connect();
-	$mysql->query("SET NAMES 'utf8'");
-	$isbn=$_POST['isbn'];
-	$query="DELETE FROM escoge WHERE email='".$_SESSION['email']."' AND ISBN=".$isbn;
+require_once('lib/nusoap.php');
 
-	$res=runquery($query,$mysql);
-	echo $res;
+$proxyhost = isset($_POST['proxyhost']) ? $_POST['proxyhost'] : '';
+$proxyport = isset($_POST['proxyport']) ? $_POST['proxyport'] : '';
+$proxyusername = isset($_POST['proxyusername']) ? $_POST['proxyusername'] : '';
+$proxypassword = isset($_POST['proxypassword']) ? $_POST['proxypassword'] : '';
+$client = new nusoap_client('http://edude.codingdiaries.com/final/webservice.php?wsdl', 'wsdl',
+						$proxyhost, $proxyport, $proxyusername, $proxypassword);
+$err = $client->getError();
+
+$result = $client->call('deleteFavorito', array('email' => $_SESSION['email'], 'isbn' => $_POST['isbn']));
+
+	echo $result;
 ?>

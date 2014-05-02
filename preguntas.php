@@ -115,7 +115,16 @@
 <div class="container"> 
 <h1>Libros recomendados</h1>
 <?php
-    require('util.php');
+    require_once('lib/nusoap.php');
+
+    $proxyhost = isset($_POST['proxyhost']) ? $_POST['proxyhost'] : '';
+    $proxyport = isset($_POST['proxyport']) ? $_POST['proxyport'] : '';
+    $proxyusername = isset($_POST['proxyusername']) ? $_POST['proxyusername'] : '';
+    $proxypassword = isset($_POST['proxypassword']) ? $_POST['proxypassword'] : '';
+    $client = new nusoap_client('http://localhost:8080/proyectoDAW2/webservice.php?wsdl', 'wsdl',
+                            $proxyhost, $proxyport, $proxyusername, $proxypassword);
+    $err = $client->getError();
+
     $forma=$_POST;
 
     $n1=$forma['sex'];
@@ -127,28 +136,25 @@
     $n7=$forma['genre'];
     $n8=$forma['feel'];
 
-
-    $query="SELECT ISBN, titulo, autor, editorial, anio, genero, descripcion 
-            FROM libros 
-            where (Preguntas like '".$n1.$n2."%' OR Preguntas like '__".$n3.$n4."%' OR Preguntas like '______".$n7.$n8."'
-            	   OR Preguntas like '_".$n2.$n3."%' OR Preguntas like '___".$n4.$n5."%' OR Preguntas like '_____".$n6.$n7."%')";    
-
- $mysql=connect();    
- $mysql->query("SET NAMES 'utf8'");
-
-	$res=showquery($query,$mysql);
+    $res_isbn=$client->call('getRecomendado_ISBN', array('n1' => $n1, 'n2' => $n2, 'n3' => $n3, 'n4' => $n4, 'n5' => $n5, 'n6' => $n6, 'n7' => $n7, 'n8' => $n8));
+    $res_titulo=$client->call('getRecomendado_titulo', array('n1' => $n1, 'n2' => $n2, 'n3' => $n3, 'n4' => $n4, 'n5' => $n5, 'n6' => $n6, 'n7' => $n7, 'n8' => $n8));
+    $res_descripcion=$client->call('getRecomendado_descripcion', array('n1' => $n1, 'n2' => $n2, 'n3' => $n3, 'n4' => $n4, 'n5' => $n5, 'n6' => $n6, 'n7' => $n7, 'n8' => $n8));
 
     $cont=1;
     $grid="";
-    foreach ($res as $key => $value) {
+    //foreach ($res as $key => $value) {
+    $res_isbn=explode(';', $res_isbn);
+    $res_titulo=explode(';', $res_titulo);
+    $res_descripcion=explode(';', $res_descripcion);
+    for ($i=0; $i < count($res_isbn); $i++) { 
         if($cont==1){
             $grid.='<div class="row service-v1 margin-bottom-40">';
         }
 
        $grid.='<div class="col-md-3 md-margin-bottom-40">
-                    <img src="img/'.$value['ISBN'].'.png" alt="'.$value['titulo'].'.png">
-                    <h3>'.$value['titulo'].'</h3>
-                    <p class="resume">'.ucfirst(strtolower(addslashes($value['descripcion']))).'</p>
+                    <img src="img/'.$res_isbn[$i].'.png" alt="'.$res_titulo[$i].'.png">
+                    <h3>'.$res_titulo[$i].'</h3>
+                    <p class="resume">'.ucfirst(strtolower(addslashes($res_descripcion[$i]))).'</p>
                 </div>';
                 $cont++;
         if($cont==5){
@@ -163,7 +169,6 @@
 
     echo $grid;
 
-    disconnect($mysql);
 ?>
 
 </div><!--/container-->     
