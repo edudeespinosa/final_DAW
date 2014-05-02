@@ -28,7 +28,28 @@
     <link rel="stylesheet" href="css/horizontal.css">
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-	
+    <script type="text/javascript">
+        function mostrarVentana()
+        {
+            var ventana = document.getElementById('VentanaEmergente'); // Accedemos al contenedor
+            ventana.style.marginTop = "100px"; 
+            ventana.style.marginLeft = ((document.body.clientWidth-350) / 2) +  "px"; 
+            ventana.style.display = 'block'; 
+        }
+
+        function ocultarVentana()
+        {
+            var ventana = document.getElementById('VentanaEmergente'); // Accedemos al contenedor
+            ventana.style.display = 'none'; 
+        }
+        function confirmation() {
+            if(confirm("Realmente desea Enviar mensaje?"))
+            {
+                window.location = "prueba.php";
+            }
+        }
+    </script>   
+
    
     </head>	
 
@@ -118,8 +139,8 @@
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
         <h1 class="pull-left">Perfil</h1>
-        <?php echo '<h1 class="aux"><a href="reg.php">Modificar información de la cuenta</a></h1>'; 
-	?>
+        <input class="pull-right" type="button" onclick="mostrarVentana()" value="Compartir">
+        <?php echo '<h1 class="aux"><a href="reg.php">Modificar información de la cuenta</a></h1>'; ?>
     </div><!--/container-->
 </div><!--/breadcrumbs-->
 <!--=== End Breadcrumbs ===-->
@@ -222,6 +243,27 @@
     });
   </script>
 
+<div id="VentanaEmergente" style="position: fixed; width: 550px; height: 450px; top: 0; left: 0; font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; border: #333333 3px solid; background-color: #FAFAFA; color: #000000; display:none;">
+    <form action="prueba.php" method="POST">
+    <div style="font-weight: bold; text-align: left; color: #FFFFFF; padding: 5px; background-color:#006394">
+        Correo
+    </div>
+    <label>From: </label>
+    <label name="sender"><?php echo $_SESSION['email']; ?></label>
+    <label>To :</label><input type="text" name="receiver"/>
+    <br>
+    <label>Subject :</label>
+    <input type="text" name="subject"/>
+    <br>
+    <label>Mensaje</label>
+    <br>
+    <textarea name="message" cols="500" rows="5"></textarea>
+    <div style="padding: 10px; background-color: #F0F0F0; text-align: center; margin-top: 44px;">
+    <input id="btnAAAceptar" name="btnAceptar" size="20" type="button" value="Aceptar" onclick="confirmation()" />
+    <input id="btnCancelar" onclick="ocultarVentana();" name="btnCancelar" size="20" type="button" value="Cancelar" />
+    </form>
+    </div>
+</div>
 
 </body>
 </html>	
