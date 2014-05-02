@@ -194,7 +194,7 @@ if ($err) {
                 </p>
             </div>
             <div class="col-md-6">  
-                <a href="index.html">
+                <a href="index.php">
                     <img id="logo-footer" src="img/logo.png" class="pull-right" alt="" />
                 </a>
             </div>

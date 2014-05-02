@@ -74,7 +74,7 @@ if ($err) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="index.php">
                     <img id="logo-header" src="img/logo.png" alt="Logo">
                 </a>
             </div>
@@ -170,7 +170,7 @@ if ($err) {
                 </p>
             </div>
             <div class="col-md-6">  
-                <a href="index.html">
+                <a href="index.php">
                     <img id="logo-footer" src="img/logo.png" class="pull-right" alt="" />
                 </a>
             </div>
