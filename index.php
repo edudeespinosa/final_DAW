@@ -114,6 +114,12 @@ if ($err) {
                             ACERCA DE
                             <i class="icon-angle-down"></i>
                         </a>
+                    </li>                    
+                    <li class="dropdown">
+                        <a href="casos.php">
+                            CASOS DE USO
+                            <i class="icon-angle-down"></i>
+                        </a>
                     </li>
                 </ul>     
             </div><!-- /navbar-collapse -->
