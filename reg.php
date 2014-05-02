@@ -141,13 +141,21 @@
                 <h4>Contraseña</h4>         
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" placeholder="Contraseña" class="form-control" id="Contraseña" name="passwd" value="<?php echo 'holi'?>"></input>
+                    <input type="password" placeholder="Contraseña" class="form-control" id="Contraseña" name="passwd" value="<?php if(isset($_SESSION['email'])){
+                        if(returnpsswd($_SESSION['email'])!=-1){
+                            echo return returnpsswd($_SESSION['email']);
+                        }
+                    }?>"></input>
                 </div>
                 
                 <h4>Confirmar contraseña</h4>         
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" placeholder="Contraseña" class="form-control" id="Confirmación" name="passwd2">
+                    <input type="password" placeholder="Contraseña" class="form-control" id="Confirmación" name="passwd2"value="<?php if(isset($_SESSION['email'])){
+                        if(returnpsswd($_SESSION['email'])!=-1){
+                            echo return returnpsswd($_SESSION['email']);
+                        }
+                    }?>">
                 </div>
                 
 
