@@ -45,7 +45,23 @@
         function confirmation() {
             if(confirm("Realmente desea Enviar mensaje?"))
             {
-                window.location = "prueba.php";
+		var parametros = {
+			"receiver" : $("#receiver").val(),
+			"subject" : $("#subject").val()
+		};
+		$.ajax({
+			data: parametros,
+			url: 'prueba.php',
+			type: 'post',
+			success: function(data){
+				alert('Se ha enviado tu mensaje');
+				ocultarVentana();
+			},
+			error: function(data){
+				alert('Sucedio un error D: . Contacta a los creadores del sitio');
+				ocultarVentana();
+			}
+		});
             }
         }
     </script>   
@@ -139,7 +155,6 @@
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
         <h1 class="pull-left">Perfil</h1>
-        <input class="pull-right" type="button" onclick="mostrarVentana()" value="Compartir">
         <?php echo '<h1 class="aux"><a href="reg.php">Modificar información de la cuenta</a></h1>'; ?>
     </div><!--/container-->
 </div><!--/breadcrumbs-->
@@ -148,6 +163,7 @@
 
 <!--=== Content Part ===-->
 <div class="container">	
+<input class="pull-right btn btn-success" type="button" onclick="mostrarVentana()" value="Compartir">
 <h1>Favoritos</h1>
 <?php
 	
@@ -249,15 +265,15 @@
         Correo
     </div>
     <label>From: </label>
-    <label name="sender"><?php echo $_SESSION['email']; ?></label>
-    <label>To :</label><input type="text" name="receiver"/>
+    <label name="sender" id="sender"><?php echo $_SESSION['email']; ?></label>
+    <label>To :</label><input type="text" name="receiver" id="receiver"/>
     <br>
     <label>Subject :</label>
-    <input type="text" name="subject"/>
+    <input type="text" name="subject" id="subject"/>
     <br>
     <label>Mensaje</label>
     <br>
-    <textarea name="message" cols="500" rows="5"></textarea>
+    <textarea name="message" cols="500" rows="5" id="message"></textarea>
     <div style="padding: 10px; background-color: #F0F0F0; text-align: center; margin-top: 44px;">
     <input id="btnAAAceptar" name="btnAceptar" size="20" type="button" value="Aceptar" onclick="confirmation()" />
     <input id="btnCancelar" onclick="ocultarVentana();" name="btnCancelar" size="20" type="button" value="Cancelar" />

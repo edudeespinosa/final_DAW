@@ -239,7 +239,7 @@ function getRecomendado_descripcion($n1,$n2,$n3,$n4,$n5,$n6,$n7,$n8){
     if(count($table)!=0){
         $res1="".$table[0]['descripcion'];
         for($i=1; $i<count($table);$i++){
-            $res1.=";".$table[$i]['descripcion'];
+            $res1.=";*;".$table[$i]['descripcion'];
         }
         return $res1;
     }else{

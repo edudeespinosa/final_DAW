@@ -1,6 +1,7 @@
 <?php
 
 include_once('util.php');
+	
 	$mysql=connect();
 	$mysql->query("SET NAMES 'utf8'");
 

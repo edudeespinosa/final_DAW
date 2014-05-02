@@ -92,7 +92,7 @@
             <label for="radio8" class="css-label">Salir con amigos</label>
             <br><br>
             <input type="radio" name="activity" id="radio9" value="2" class="css-checkbox"/>
-            <label for="radio9" class="css-label">Estar con la failia</label>
+            <label for="radio9" class="css-label">Estar con la familia</label>
             <br><br>
             <input type="radio" name="activity" id="radio10" value="3" class="css-checkbox" />
             <label for="radio10" class="css-label">Cocinar</label>
