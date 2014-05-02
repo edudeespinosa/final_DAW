@@ -1,4 +1,5 @@
 <?php session_start()?>
+<?php include_once('util.php');?>
 
 <html lang="es">
 <head>
@@ -41,7 +42,6 @@
                 <li class="devider"></li>
                 <li><a href="logout.php">  Cerrar Sesión</a></li>'; 
             }
-            include_once('util.php');
             ?>
         </ul>
     </div>      
@@ -141,15 +141,14 @@
                 <h4>Contraseña</h4>         
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-		    <input type="password" placeholder="Contrasena" class="form-control" id="Contrasena" name="passwd" value="<?php if(isset($_SESSION['email'])){ echo returnpsswd($_SESSION['email']);}?>">
+		    <input type="password" placeholder="Contrasena" class="form-control" id="Contrasena" name="passwd" 
+            value="<?php if(isset($_SESSION['email'])){ echo returnpsswd($_SESSION['email']);}?>">
                 </div>
                 
                 <h4>Confirmar contraseña</h4>         
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" placeholder="Contraseña" class="form-control" id="Confirmación" name="passwd2"value="<?php if(isset($_SESSION['email'])){
-                            echo return returnpsswd($_SESSION['email']);
-                    }?>">
+                    <input type="password" placeholder="Contraseña" class="form-control" id="Confirmación" name="passwd2"value="<?php if(isset($_SESSION['email'])){ echo returnpsswd($_SESSION['email']);}?>">
                 </div>
                 
 
