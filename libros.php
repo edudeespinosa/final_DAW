@@ -155,7 +155,7 @@ if ($err) {
         if ($res_isbn != false) {
             $res_isbn=explode(';',$res_isbn);
             $res_titulo=explode(';',$res_titulo);
-            $res_descripcion=explode(';',$res_descripcion);
+            $res_descripcion=explode(';*;',$res_descripcion);
            $cont=1;
            $grid="";
            //foreach ($res as $key => $value) {

@@ -169,7 +169,7 @@ if ($err) {
     //foreach ($res as $key => $value) {
     $res_isbn=explode(';', $res_isbn);
     $res_titulo=explode(';', $res_titulo);
-    $res_descripcion=explode(';', $res_descripcion);
+    $res_descripcion=explode(';*;', $res_descripcion);
     for ($i=0; $i < count($res_isbn); $i++) { 
         if($cont==1){
             $grid.='<div class="row service-v1 margin-bottom-40">';

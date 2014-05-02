@@ -160,7 +160,7 @@ function getLibros_descripcion($email){
     if(count($table)!=0){
         $res1="".$table[0]['descripcion'];
         for($i=1; $i<count($table);$i++){
-            $res1.=";".$table[$i]['descripcion'];
+            $res1.=";*;".$table[$i]['descripcion'];
         }
         return $res1;
     }else{
