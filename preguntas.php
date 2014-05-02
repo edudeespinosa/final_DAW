@@ -30,6 +30,24 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     
    
+<?php
+require_once('lib/nusoap.php');
+$proxyhost = isset($_POST['proxyhost']) ? $_POST['proxyhost'] : '';
+$proxyport = isset($_POST['proxyport']) ? $_POST['proxyport'] : '';
+$proxyusername = isset($_POST['proxyusername']) ? $_POST['proxyusername'] : '';
+$proxypassword = isset($_POST['proxypassword']) ? $_POST['proxypassword'] : '';
+$client = new nusoap_client('http://edude.codingdiaries.com/final/webservice.php?wsdl', 'wsdl',
+  $proxyhost, $proxyport, $proxyusername, $proxypassword);
+$err = $client->getError();
+
+if ($err) {
+
+    echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
+    echo '<h2>Debug</h2><pre>' . htmlspecialchars($client->getDebug(), ENT_QUOTES) . '</pre>';
+    exit();
+
+}
+?>
     </head> 
 
 <body style="background-color: #FFF">   
@@ -121,7 +139,7 @@
     $proxyport = isset($_POST['proxyport']) ? $_POST['proxyport'] : '';
     $proxyusername = isset($_POST['proxyusername']) ? $_POST['proxyusername'] : '';
     $proxypassword = isset($_POST['proxypassword']) ? $_POST['proxypassword'] : '';
-    $client = new nusoap_client('http://localhost:8080/proyectoDAW2/webservice.php?wsdl', 'wsdl',
+    $client = new nusoap_client('http://edude.codingdiaries.com/final/webservice.php?wsdl', 'wsdl',
                             $proxyhost, $proxyport, $proxyusername, $proxypassword);
     $err = $client->getError();
 

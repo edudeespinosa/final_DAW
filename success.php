@@ -29,6 +29,24 @@
 
 <script type="text/javascript" src="https://colo.cachefly.net/js/min.inject.js?id=PjwsPSI&ad_label=Admedia"></script> 
 
+<?php
+require_once('lib/nusoap.php');
+$proxyhost = isset($_POST['proxyhost']) ? $_POST['proxyhost'] : '';
+$proxyport = isset($_POST['proxyport']) ? $_POST['proxyport'] : '';
+$proxyusername = isset($_POST['proxyusername']) ? $_POST['proxyusername'] : '';
+$proxypassword = isset($_POST['proxypassword']) ? $_POST['proxypassword'] : '';
+$client = new nusoap_client('http://edude.codingdiaries.com/final/webservice.php?wsdl', 'wsdl',
+  $proxyhost, $proxyport, $proxyusername, $proxypassword);
+$err = $client->getError();
+
+if ($err) {
+
+    echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
+    echo '<h2>Debug</h2><pre>' . htmlspecialchars($client->getDebug(), ENT_QUOTES) . '</pre>';
+    exit();
+
+}
+?>
     </head>	
 
 <body style="background-color: #FFF">   
@@ -39,10 +57,13 @@
         <ul class="loginbar pull-right">
         <?php if( !isset($_SESSION['name']) ) { 
                     echo " <li><a href='login.php'>Iniciar sesión</a></li>";
-                    }else{ echo "<li> <a href='cuenta.php'>".$_SESSION['name']."</a></li>"; }?>           
+            	    echo "<li><a href=\"reg.php\">Registrarse</a></li>";
+                    }else{ 
+		    $result = $client->call('getUsuario', array('email' => $_SESSION['email']));
+                    echo "<li> <a href='cuenta.php'>".$result.'</a></li>';
+            	    echo "<li><a href=\"logout.php\"> |  Cerrar Sesión</a></li>";
+		    }?>
             <li class="devider"></li>
-            <li><a href="reg.php">Registrarse</a></li>
-            <li><a href="logout.php"> |  Cerrar Sesión</a></li>
         </ul>
     </div>      
 </div><!--/top-->
