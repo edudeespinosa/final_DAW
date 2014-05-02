@@ -46,9 +46,6 @@
 		$mysql = mysqli_connect('localhost','root','C0d1ng4fUn','dawfinal');
 		$query = 'select password from usuarios where email = '.$email;
 		$res = $mysql->query($query);
-		if($res){
-			return $res;
-		}
-		else return -1;
+		return $res;
 	}	
 ?>
