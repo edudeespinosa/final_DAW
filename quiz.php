@@ -1,60 +1,53 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>READBOOK | Quiz</title>
-	<link rel="image_src" href="/images/notify_better_image.png"/>
-	<link rel="shortcut icon" id="favicon" href="favicon.png">
-	<link rel="canonical" href="http://www.thepetedesign.com/demos/onepage_scroll_demo.html" />
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Pacifico:400' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <meta charset="utf-8">
+  <title>READBOOK | Quiz</title>
+  <link rel="image_src" href="/images/notify_better_image.png"/>
+  <link rel="shortcut icon" id="favicon" href="favicon.png">
+  <link rel="canonical" href="http://www.thepetedesign.com/demos/onepage_scroll_demo.html" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Pacifico:400' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script type="text/javascript" src="js/jquery.onepage-scroll.js"></script>
   <link href='css/onepage-scroll.css' rel='stylesheet' type='text/css'>
   <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <link href="css/quiz.css" rel="stylesheet" type="text/css">
-	<script>
-	  $(document).ready(function(){
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+  <script>
+    $(document).ready(function(){
       $(".main").onepage_scroll({
         sectionContainer: "section",
         responsiveFallback: 600,
         loop: true
       });
-		});
-		
-	</script>
+    });
+  </script>
+  <script>
+  function OnSubmitForm(){
+    //window.location="index.php";
+    if(document.pressed=='Ver resultados')
+      document.formulario.action="preguntas.php";
+    else if(document.pressed=='Inicio')
+      document.formulario.action="index.php";
+  }
+  </script>
 </head>
-<?php
-require_once('lib/nusoap.php');
-$proxyhost = isset($_POST['proxyhost']) ? $_POST['proxyhost'] : '';
-$proxyport = isset($_POST['proxyport']) ? $_POST['proxyport'] : '';
-$proxyusername = isset($_POST['proxyusername']) ? $_POST['proxyusername'] : '';
-$proxypassword = isset($_POST['proxypassword']) ? $_POST['proxypassword'] : '';
-$client = new nusoap_client('http://edude.codingdiaries.com/final/webservice.php?wsdl', 'wsdl',
-  $proxyhost, $proxyport, $proxyusername, $proxypassword);
-$err = $client->getError();
-
-if ($err) {
-
-    echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
-    echo '<h2>Debug</h2><pre>' . htmlspecialchars($client->getDebug(), ENT_QUOTES) . '</pre>';
-    exit();
-
-}
-?>
 <body>
   
-  <form class="wrapper" method="post" action="preguntas.php">
-	  <div class="main">
+  <form class="wrapper" method="post" name="formulario" id="formulario" onsubmit="return OnSubmitForm()">
+    <div class="main">
       <section class="page1">
+        <input type="submit" class="btn btn-info"  value="Inicio" onclick="document.pressed=this.value" style="left:0; position:absolute; width: 100px;"/>
         <div class="page_container">
           <h1>Quiz de <br>recomendación <br> de libros</h1>
           <h2>Para empezar a contestar las preguntas simplemente haz scroll hacia abajo o da click en los botones en la parte derecha de la página</h2>
-  	    </div>
+        </div>
       </section>
-	    
-	    <section class="page2">
-	      <div class="page_container">
+      
+      <section class="page2">
+        <div class="page_container">
           <h1>¿Que sexo eres?</h1>
           <br>
           <div style="color: #FFF">
@@ -64,11 +57,11 @@ if ($err) {
           <input type="radio" name="sex" id="radio2" value="1" class="css-checkbox"/>
           <label for="radio2" class="css-label">Femenino</label>
           <div>
-	      </div>
+        </div>
       </section>
-	    
-	    <section class="page3">
-	      <div class="page_container">
+      
+      <section class="page3">
+        <div class="page_container">
           <h1>¿En qué intervalo de edad se encuentra?</h1>
           <p></p>
           <br><br><br>
@@ -85,7 +78,7 @@ if ($err) {
           <input type="radio" name="age" id="radio6" value="3" class="css-checkbox" />
           <label for="radio6" class="css-label">Mayor a 30 años</label>
           <div>
-  	    </div>
+        </div>
       </section>
 
       <section class="page4">
@@ -211,7 +204,7 @@ if ($err) {
           <h1>Encuesta finalizada</h1>
           <br>
           <div style="color: #FFF">
-            <input type="submit" class="btn" id="terminar"  value="Ver resultados"/>
+            <input type="submit" class="btn" id="terminar"  value="Ver resultados" onclick="document.pressed=this.value"/>
           </div>
         </div>
 
