@@ -50,17 +50,18 @@ if ($err) {
     <div class="top">
         <div class="container">   
             <ul class="loginbar pull-right">
-             <?php 
-             if(!isset($_SESSION['name'])) { 
-                echo '<li><a href="login.php">Iniciar sesión</a></li> 
-                <li class="devider"></li>
-                <li><a href="reg.php">Registrarse</a></li>';
-            }else{ 
-                echo "<li> <a href='cuenta.php'>".$_SESSION['name'].'</a></li>
-                <li class="devider"></li>
-                <li><a href="logout.php">  Cerrar Sesión</a></li>'; 
-            }
-            ?>
+               <?php 
+               if(!isset($_SESSION['name'])) { 
+                    echo '<li><a href="login.php">Iniciar sesión</a></li> 
+                    <li class="devider"></li>
+                    <li><a href="reg.php">Registrarse</a></li>';
+                }else{ 
+            $result = $client->call('getUsuario', array('email' => $_SESSION['email']));
+                    echo "<li> <a href='cuenta.php'>".$result.'</a></li>
+                    <li class="devider"></li>
+                    <li><a href="logout.php">  Cerrar Sesión</a></li>'; 
+                }
+                ?>
         </ul>
     </div>      
 </div><!--/top-->
