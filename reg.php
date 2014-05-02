@@ -41,6 +41,7 @@
                     <li class="devider"></li>
                     <li><a href="logout.php">  Cerrar Sesión</a></li>'; 
                 }
+		include_once('util.php');
                 ?>
         </ul>
     </div>      
@@ -83,6 +84,7 @@
                     <li class="dropdown">
 
                         <a href="libros.php">
+
                             VER LIBROS
                             <i class="icon-angle-down"></i>
                         </a>
@@ -126,21 +128,21 @@
                 <h4>Nombre</h4>         
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input type="text" class="form-control" id="Nombre" name="nombre" placeholder="Juan">
+                    <input type="text" class="form-control" id="Nombre" name="nombre" placeholder="Juan" value="<?php if (isset($_SESSION['name'])){echo $_SESSION['name'];}?>">
                 </div>
                 <h4>Correo electronico</h4>
                 <div class="input-group margin-bottom-20">
 
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input type="email" placeholder="example@gmail.com" class="form-control" id="Correo" name="username">
+                    <input type="email" placeholder="example@gmail.com" class="form-control" id="Correo" name="username" value="<?php if(isset($_SESSION['email'])){echo $_SESSION['email'];}?>">
                 </div>    
                 
 
                 <h4>Contraseña</h4>         
                 <div class="input-group margin-bottom-20">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" placeholder="Contraseña" class="form-control" id="Contraseña" name="passwd">
-                </div>
+                    <input type="password" placeholder="Contraseña" class="form-control" id="Contraseña" name="passwd">  value="<?php echo 'holi'?>"</input>
+		</div>
                 
                 <h4>Confirmar contraseña</h4>         
                 <div class="input-group margin-bottom-20">
@@ -154,7 +156,9 @@
                     <div class="col-md-6">                     
                     </div>
                     <div class="col-md-6">
-                        <button class="btn-u pull-right" type="submit" id="button">Registrarse</button>                        
+			<button class="btn-u pull-right" type="submit" id="button" value="<?php if (!isset($_SESSION['name'])){echo 'registro';}else echo 'actualizar';  ?>">
+			<?php if(!isset($_SESSION['name'])) echo 'Registrarse'; else echo 'Actualizar';?>
+			</button>                        
                     </div>
                 </div>
             </form>            
