@@ -46,6 +46,6 @@
 		$mysql->connect();
 		$query = 'select password from usuarios where email = '.$email;
 		$res = $mysql->query($query);
-		echo $res;
+		return $res;
 	}	
 ?>
