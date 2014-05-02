@@ -134,6 +134,7 @@ if ($err) {
                 <li><i class="icon-ok color-green"></i> JAVASCRIPT</li>
                 <li><i class="icon-ok color-green"></i> HTML5</li>
                 <li><i class="icon-ok color-green"></i> CSS</li>
+                <li><i class="icon-ok color-green"></i> SOAP</li>
             </ul><br />
 
             <blockquote>
@@ -155,23 +156,26 @@ if ($err) {
         <div class="col-sm-3">
             <div class="thumbnail-style">
                 
-                <h3><a>Gregory Villicaña</a> <small>Database manager</small></h3>
-                <p>Deportista dévoto y aficionado de las computadoras y la tecnología en general, con la meta de superarse a sí mismo y emprender un negocio por su cuenta. Actualmente desarrolla aplicaciones
-                móviles, las cuales considera como una posible opción de trabajo en un futuro.</p>
+                <h3><a>Gregory Villicaña</a> </h3>
+
             </div>
         </div>
         <div class="col-sm-3">
             <div class="thumbnail-style">
-                <h3><a>Ana González</a> <small>Project manager</small></h3>
-                <p>Excelente organizadora de equipos, además de contar con experiencia de trabajo en desarrollo web. Tiene la meta de conseguir un puesto de alta jerarquía en una de las
-                empresas internacionales de software más reconocidas.</p>
+                <h3><a>Laura Treviño</a> </h3>
+
             </div>
         </div>
         <div class="col-sm-3">
             <div class="thumbnail-style">
-                <h3><a>Jorge Hernández</a> <small>Design manager</small></h3>
-                <p>Indispensable miembro de equipo, que siempre da un paso más que los demás. Actualmente trabaja en desarrollo móvil para en un futuro abrir un negocio propio dedicado al desarrollo de software integral
-                desde los sitios web hasta el desarrollo de aplicaciones móviles.</p>
+                <h3><a>Eduardo Espinosa</a></h3>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="thumbnail-style">
+                <h3><a>Alejandro López</a></h3>
+
             </div>
         </div>
     </div><!--/team-->
