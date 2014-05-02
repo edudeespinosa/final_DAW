@@ -103,9 +103,17 @@
 </div><!--/header--> 
 
 <!--=== Breadcrumbs ===-->
+<style>
+	h1.aux{
+		font-size:1.3em;
+		float:right;
+	}
+</style>
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
         <h1 class="pull-left">Perfil</h1>
+        <?php echo '<h1 class="aux"><a href="login.php">Modificar información de la cuenta</a></h1>'; 
+	?>
     </div><!--/container-->
 </div><!--/breadcrumbs-->
 <!--=== End Breadcrumbs ===-->

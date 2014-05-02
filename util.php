@@ -43,9 +43,10 @@
 	}
 	
 	function returnpsswd($email){
-		$mysql->connect();
-		$query = 'select password from usuarios where email = '.$email;
+		$mysql = connect();
+		$query = "select password from usuarios where email = '".$email."'";
 		$res = $mysql->query($query);
-		return $res;
+		$holi = mysqli_fetch_array($res, MYSQLI_BOTH);
+		return $holi[0];
 	}	
 ?>

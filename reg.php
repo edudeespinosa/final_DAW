@@ -209,10 +209,11 @@
         name=$("#Correo").val();
         pass=$("#Contraseña").val();
         nombre=$("#Nombre").val();
+	accion = $("#button").val();
         $.ajax({
             method:"POST",
             url: "repeticiones.php",
-            data:{'username': name, 'passwd':pass,'nombre':nombre},
+            data:{'username': name, 'passwd':pass,'nombre':nombre, 'accion':accion},
             success:function(cosas){
                 if(cosas =="repetido"){
                     msg="El correo ya se encuentra registrado";
@@ -220,7 +221,9 @@
                     msg="Ocurrió un error, intente más tarde";
                 }else if(cosas=="ok"){
                     window.location.replace("success.php");
-                }else{
+                }else if(cosas=="ok2"){
+		    window.location.replace("success2.php");
+		}else{
                     msg="Error";
                     console.log(cosas);
                 }
